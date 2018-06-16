@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
-import com.example.mariaadelaidameramiguens.taskapp.CategoriaActivity;
+import com.example.mariaadelaidameramiguens.taskapp.vista.CategoriaActivity;
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
     @Override
