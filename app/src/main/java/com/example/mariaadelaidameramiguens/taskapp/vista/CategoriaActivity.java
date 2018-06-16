@@ -9,13 +9,19 @@ import android.widget.EditText;
 
 import com.example.mariaadelaidameramiguens.taskapp.R;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Categoria;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.CategoriaRepositorio;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.dbCategoriaRepositorioImp;
 
 public class CategoriaActivity extends AppCompatActivity {
     private static final String LOG_TAG = "CategoriaActivity";
+    private CategoriaRepositorio categoriaRepositorio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria);
+
+        categoriaRepositorio = new dbCategoriaRepositorioImp(this);
+
         final EditText txtNombre = (EditText) findViewById(R.id.txtNombreCategoria);
         Button btnGuardar = (Button) findViewById(R.id.btnGuardarCategoria);
 
