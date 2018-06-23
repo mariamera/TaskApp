@@ -68,6 +68,7 @@ public class dbCategoriaRepositorioImp implements CategoriaRepositorio {
 
             // agregamos la categoria a la lista.
             categorias.add( new Categoria(id,nombre));
+            cr.moveToNext();
         }
         cr.close();
         db.close();

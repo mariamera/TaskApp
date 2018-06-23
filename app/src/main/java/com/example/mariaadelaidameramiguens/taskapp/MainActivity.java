@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import com.example.mariaadelaidameramiguens.taskapp.vista.CategoriaActivity;
+import com.example.mariaadelaidameramiguens.taskapp.vista.CategoriaListaActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
     @Override
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         btnCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CategoriaActivity.class);
+                Intent intent = new Intent(MainActivity.this, CategoriaListaActivity.class);
                 startActivity(intent);
             }
         });

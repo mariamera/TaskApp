@@ -5,26 +5,26 @@ package com.example.mariaadelaidameramiguens.taskapp.entitdades;
  */
 
 public class Categoria {
-    private int id;
+    private Integer id;
     private String nombre;
 
     public Categoria() {
     }
 
-    public Categoria(int id) {
+    public Categoria(Integer id) {
         this.id = id;
     }
 
-    public Categoria(int id, String nombre) {
+    public Categoria(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Categoria setId(int id) {
+    public Categoria setId(Integer id) {
         this.id = id;
         return this;
     }
