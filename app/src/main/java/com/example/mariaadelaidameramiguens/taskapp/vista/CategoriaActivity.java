@@ -29,8 +29,10 @@ public class CategoriaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Categoria categoria = new Categoria();
-                categoria.setDescripcion(txtNombre.getText().toString());
-                Log.i(LOG_TAG, categoria.toString());
+                categoria.setNombre(txtNombre.getText().toString());
+                Log.i(LOG_TAG,categoria.toString());
+                categoriaRepositorio.guardar(categoria);
+                Log.i(LOG_TAG,categoria.toString());
                 //Todo: guardar categoria en la base de datos
                 //Todo: 1 = si Existe Actualizarla, 2- si no agregarla
             }

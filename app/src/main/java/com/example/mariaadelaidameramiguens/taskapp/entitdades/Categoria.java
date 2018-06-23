@@ -6,29 +6,43 @@ package com.example.mariaadelaidameramiguens.taskapp.entitdades;
 
 public class Categoria {
     private int id;
-    private String descripcion;
+    private String nombre;
+
+    public Categoria() {
+    }
+
+    public Categoria(int id) {
+        this.id = id;
+    }
+
+    public Categoria(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public Categoria setId(int id) {
         this.id = id;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public Categoria setNombre(String nombre) {
+        this.nombre = nombre;
+        return this;
     }
 
     @Override
     public String toString() {
         return "Categoria{" +
                 "id=" + id +
-                ", descripcion='" + descripcion + '\'' +
+                ", descripcion='" + nombre + '\'' +
                 '}';
     }
 }
