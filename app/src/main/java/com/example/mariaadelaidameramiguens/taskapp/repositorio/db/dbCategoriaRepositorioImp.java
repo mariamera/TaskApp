@@ -27,6 +27,10 @@ public class dbCategoriaRepositorioImp implements CategoriaRepositorio {
 
     @Override
     public boolean guardar(Categoria categoria){
+
+        if( categoria.getId() != null && categoria.getId() > 0) {
+            return actualizar(categoria);
+        }
         ContentValues cv = new ContentValues();
         cv.put(CAMPO_NOMBRE, categoria.getNombre());
 
@@ -45,7 +49,15 @@ public class dbCategoriaRepositorioImp implements CategoriaRepositorio {
 
     @Override
     public boolean actualizar(Categoria categoria){
-        return false;
+        ContentValues cv = new ContentValues();
+        cv.put(CAMPO_NOMBRE, categoria.getNombre());
+
+        SQLiteDatabase db = connexionDb.getWritableDatabase();
+        int cantidad = db.update(TABLA_CATEGORIA, cv, "id == ?", new String[]{categoria.getId().toString()}); // El array de string son los parametros :)
+
+        db.close();
+
+        return cantidad > 0;
     }
 
     @Override

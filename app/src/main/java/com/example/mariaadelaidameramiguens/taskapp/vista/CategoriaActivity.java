@@ -37,16 +37,15 @@ public class CategoriaActivity extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if ( categoria == null ) categoria = new Categoria();
+                if ( categoria == null ){
+                    categoria = new Categoria();
+                }
 
                 categoria.setNombre(txtNombre.getText().toString());
 
-                categoriaRepositorio.guardar(categoria);
+                 categoriaRepositorio.guardar(categoria);
 
                 Log.i(LOG_TAG,categoria.toString());
-                //Todo: guardar categoria en la base de datos
-                //Todo: 1 = si Existe Actualizarla, 2- si no agregarla
             }
         });
     }
