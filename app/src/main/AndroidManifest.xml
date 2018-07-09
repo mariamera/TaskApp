@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".vista.CategoriaActivity" />
-        <activity android:name=".vista.CategoriaListaActivity"></activity>
+        <activity android:name=".vista.CategoriaListaActivity" />
+        <activity android:name=".vista.LogInActivity" />
+        <activity android:name=".vista.RegistrarActivity"></activity>
     </application>
 
 </manifest>

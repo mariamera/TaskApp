@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Usuario {
 
-    public  enum TipoUsuario {
+    public enum TipoUsuario {
         TECNICO,
         NORMAL
     }
@@ -16,6 +16,16 @@ public class Usuario {
     private String nombre;
     private String email;
     private String contrasena;
+
+    public Usuario(Integer id, String nombre, String email, String contrasena, TipoUsuario tipoUsuario) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Usuario() {}
 
     private  TipoUsuario tipoUsuario;
 
@@ -58,6 +68,7 @@ public class Usuario {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+
 
     @Override
     public String toString() {

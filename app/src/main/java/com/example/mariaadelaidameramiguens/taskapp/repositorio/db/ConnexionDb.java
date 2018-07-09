@@ -23,6 +23,8 @@ public class ConnexionDb extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i(LOG_TAG,"creando la base de datos");
         db.execSQL(EstructuraDb.TABLA_CATEGORIA);
+        db.execSQL(EstructuraDb.TABLA_USUARIO);
+
     }
 
     @Override

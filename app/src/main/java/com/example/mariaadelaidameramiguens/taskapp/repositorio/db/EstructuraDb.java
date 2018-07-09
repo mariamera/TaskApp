@@ -7,5 +7,6 @@ package com.example.mariaadelaidameramiguens.taskapp.repositorio.db;
 public class EstructuraDb {
 
     public static final String TABLA_CATEGORIA = "CREATE TABLE categoria ( id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT)";
+    public static final String TABLA_USUARIO = "CREATE TABLE usuario ( id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT, password TEXT, tipoUsuario TEXT)";
 
 }
