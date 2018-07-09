@@ -12,11 +12,11 @@ import android.util.Log;
 public class ConnexionDb extends SQLiteOpenHelper {
     private static final String LOG_TAG = "connextionDb";
     private static final String NOMBRE_DB = "taskapp.db";
-    private static final int VERSION_BD = 1;
+    private static final int DATABASE_VERSION = 2;
 
 
     public ConnexionDb(Context context) {
-        super(context, NOMBRE_DB, null , VERSION_BD);
+        super(context, NOMBRE_DB, null , DATABASE_VERSION);
     }
 
     @Override
@@ -28,7 +28,10 @@ public class ConnexionDb extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        //TODO: something for later
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (newVersion > oldVersion) {
+            //db.execSQL("ALTER TABLE foo ADD COLUMN new_column INTEGER DEFAULT 0");
+            onCreate(db);
+        }
     }
 }

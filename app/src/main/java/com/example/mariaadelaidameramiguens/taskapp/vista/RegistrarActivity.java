@@ -16,6 +16,7 @@ import com.example.mariaadelaidameramiguens.taskapp.R;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Categoria;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.UsuarioRepositorio;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.Usuariorepositoriodbimpl;
 
 import java.util.Arrays;
 
@@ -29,6 +30,7 @@ public class RegistrarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
+        usuarioRepositorio = new Usuariorepositoriodbimpl(this);
 
         final EditText emailtxt = (EditText) findViewById(R.id.emailtxt);
         final EditText nombretxt =   (EditText) findViewById(R.id.nombretxt);
@@ -45,7 +47,9 @@ public class RegistrarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
              if(validarContrasena(contrasenatxt.getText().toString(),confipwtxt.getText().toString()) ) {
+
                  usuario = new Usuario();
+
                  usuario.setEmail(emailtxt.getText().toString());
                  usuario.setNombre(nombretxt.getText().toString());
                  usuario.setContrasena(contrasenatxt.getText().toString());
@@ -53,29 +57,20 @@ public class RegistrarActivity extends AppCompatActivity {
                  radioTipoUsuario = (RadioButton) findViewById(selectedId);
                  usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(radioTipoUsuario.getText().toString()));
 
-                 usuarioRepositorio.guardar(usuario);
-
-//                if (!usuarioRepositorio.guardar(usuario)) {
-//                    errorMsj.setText("Email Existe");
-//
-//                } else {
-//
-//                }
-
+                if (!usuarioRepositorio.guardar(usuario)) errorMsj.setText("Email Existe" );
+                else goToMainActivity();
 
              } else {
-                 errorMsj.setText("Contrasena no machean, radioGroup");
+                 errorMsj.setText("Contrasena no machean");
              }
 
-              //  Log.i(LOG_TAG,usuario.toString());
             }
         });
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrarActivity.this, MainActivity.class);
-                startActivity(intent);
+                goToMainActivity();
             }
 
 
@@ -85,5 +80,12 @@ public class RegistrarActivity extends AppCompatActivity {
 
     static boolean validarContrasena(String contrasenaUna,String contrasenaDos) {
         return new String(contrasenaUna).equals(contrasenaDos);
+    }
+    static boolean validarUsuario(Usuario usuario) {
+        return usuario.getEmail() != "" && usuario.getNombre() != "";
+    }
+    void goToMainActivity() {
+        Intent intent = new Intent(RegistrarActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
