@@ -81,4 +81,11 @@ public class Usuario {
         sb.append('}');
         return sb.toString();
     }
+
+    public static boolean validarUsuario(Usuario usuario) {
+        return usuario.getEmail() != "" || usuario.getNombre() != "";
+    }
+    public static boolean validarContrasena(String contrasenaUna,String contrasenaDos) {
+        return new String(contrasenaUna).equals(contrasenaDos);
+    }
 }

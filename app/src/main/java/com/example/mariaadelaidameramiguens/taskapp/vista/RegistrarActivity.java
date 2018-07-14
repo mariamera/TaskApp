@@ -46,7 +46,7 @@ public class RegistrarActivity extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             if(validarContrasena(contrasenatxt.getText().toString(),confipwtxt.getText().toString()) ) {
+             if(Usuario.validarContrasena(contrasenatxt.getText().toString(),confipwtxt.getText().toString()) ) {
 
                  usuario = new Usuario();
 
@@ -58,6 +58,7 @@ public class RegistrarActivity extends AppCompatActivity {
                  usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(radioTipoUsuario.getText().toString()));
 
                 if (!usuarioRepositorio.guardar(usuario)) errorMsj.setText("Email Existe" );
+                if(Usuario.validarUsuario(usuario)) errorMsj.setText("LLenar todos los campos");
                 else goToMainActivity();
 
              } else {
@@ -78,14 +79,8 @@ public class RegistrarActivity extends AppCompatActivity {
 
     }
 
-    static boolean validarContrasena(String contrasenaUna,String contrasenaDos) {
-        return new String(contrasenaUna).equals(contrasenaDos);
-    }
-    static boolean validarUsuario(Usuario usuario) {
-        return usuario.getEmail() != "" && usuario.getNombre() != "";
-    }
     void goToMainActivity() {
-        Intent intent = new Intent(RegistrarActivity.this, MainActivity.class);
+        Intent intent = new Intent(RegistrarActivity.this, LogInActivity.class);
         startActivity(intent);
     }
 }

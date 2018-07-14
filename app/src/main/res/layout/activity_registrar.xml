@@ -88,14 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checkedButton="@+id/radioNormal"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/radioTecnico"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="TECNICO" />
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioNormal"
@@ -103,6 +96,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="NORMAL" />
+
+            <RadioButton
+                android:id="@+id/radioTecnico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="TECNICO" />
 
         </RadioGroup>
 
