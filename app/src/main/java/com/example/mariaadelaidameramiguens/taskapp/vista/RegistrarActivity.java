@@ -57,11 +57,20 @@ public class RegistrarActivity extends AppCompatActivity {
                  radioTipoUsuario = (RadioButton) findViewById(selectedId);
                  usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(radioTipoUsuario.getText().toString()));
 
-                if (!usuarioRepositorio.guardar(usuario)) errorMsj.setText("Email Existe" );
-                if(Usuario.validarUsuario(usuario)) errorMsj.setText("LLenar todos los campos");
-                else goToMainActivity();
+                if (usuarioRepositorio.buscar(usuario)){
+                    errorMsj.setText("Email Existe" );
+                } else
+                if(validarUsuario(usuario)){
+                    errorMsj.setText("LLenar todos los campos");
+                }
+                else {
+                    Log.i(LOG_TAG,usuario.toString());
+                    usuarioRepositorio.guardar(usuario);
+                    goToMainActivity();
+                }
 
              } else {
+                 Log.i(LOG_TAG,usuario.toString());
                  errorMsj.setText("Contrasena no machean");
              }
 
@@ -77,6 +86,10 @@ public class RegistrarActivity extends AppCompatActivity {
 
         });
 
+    }
+    public static boolean validarUsuario(Usuario usuario) {
+        Log.i(LOG_TAG,usuario.toString());
+        return usuario.getEmail().isEmpty() || usuario.getNombre().isEmpty()  || usuario.getContrasena().isEmpty();
     }
 
     void goToMainActivity() {

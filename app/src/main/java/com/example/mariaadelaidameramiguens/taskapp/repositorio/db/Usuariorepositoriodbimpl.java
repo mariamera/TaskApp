@@ -16,6 +16,7 @@ public class Usuariorepositoriodbimpl implements UsuarioRepositorio {
 
     private ConnexionDb connexionDb;
     private static final String CAMPO_NOMBRE = "nombre";
+    private static final String CAMPO_ID = "id";
     private static final String CAMPO_EMAIL = "email";
     private static final String CAMPO_CONTRASENA = "password";
     private static final String CAMPO_TIPOUSUARIO = "tipoUsuario";
@@ -30,9 +31,9 @@ public class Usuariorepositoriodbimpl implements UsuarioRepositorio {
     public boolean guardar(Usuario usuario) {
 
         if( buscar(usuario)) {
-            return false;
+           // return false;
+            return actualizar(usuario);
         }
-
         ContentValues cv = new ContentValues();
         cv.put(CAMPO_NOMBRE, usuario.getNombre());
         cv.put(CAMPO_EMAIL, usuario.getEmail());
@@ -70,39 +71,44 @@ public class Usuariorepositoriodbimpl implements UsuarioRepositorio {
     }
 
     @Override
-    public List<Usuario> buscar(String Name) {
-        List<Usuario> usuarios = new ArrayList<>();
+    public Usuario buscar(int id) {
+        ContentValues cv = new ContentValues();
+        cv.put(CAMPO_ID, id);
+        String[] columnas = {CAMPO_ID, CAMPO_NOMBRE,CAMPO_EMAIL,CAMPO_CONTRASENA, CAMPO_TIPOUSUARIO };
+
         SQLiteDatabase db = connexionDb.getReadableDatabase();
-        String[] columnas = {"id", CAMPO_NOMBRE, CAMPO_EMAIL, CAMPO_CONTRASENA , CAMPO_TIPOUSUARIO};
 
-        //TODO: filter usuarios por nombre (LIKE)
-        Cursor cr = db.query(TABLA_USUARIO, columnas, null, null , null, null, null);
-        cr.moveToFirst();
-
-        while (!cr.isAfterLast()) {
-            int id = cr.getInt(cr.getColumnIndex("id"));
-            String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE) );
-            String email = cr.getString(cr.getColumnIndex(CAMPO_EMAIL) );
-            String contrasena = cr.getString(cr.getColumnIndex(CAMPO_CONTRASENA) );
-            String tipoUsuario = cr.getString(cr.getColumnIndex(CAMPO_TIPOUSUARIO) );
-
-            // agregamos la usuario a la lista.
-            usuarios.add( new Usuario(id, nombre, email,  contrasena, Usuario.TipoUsuario.valueOf(tipoUsuario)));
-            cr.moveToNext();
-        }
-        cr.close();
+        //TODO: filter categorias por nombre (LIKE)
+        Cursor cr = db.query(TABLA_USUARIO, columnas, CAMPO_ID + "=?", new String[]{ Integer.toString(id) }, null, null, null);
+        int cantidadDeUsuarios = cr.getCount();
         db.close();
-        return usuarios;
+        Usuario usuario = new Usuario();
+
+        if (cr != null){
+            cr.moveToFirst();
+            usuario.setId(cr.getInt(cr.getColumnIndex(CAMPO_ID)));
+            usuario.setNombre(cr.getString(cr.getColumnIndex(CAMPO_NOMBRE)));
+            usuario.setEmail(cr.getString(cr.getColumnIndex(CAMPO_EMAIL)));
+            usuario.setEmail(cr.getString(cr.getColumnIndex(CAMPO_CONTRASENA)));
+            usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(cr.getString(cr.getColumnIndex(CAMPO_TIPOUSUARIO))));
+        }
+
+        return usuario;
     }
 
     @Override
-    public Usuario buscar(int id) {
+    public List<Usuario> buscarTecnicos() {
+        return null;
+    }
+
+    @Override
+    public Usuario buscar(String username) {
         return null;
     }
 
     public boolean buscar(Usuario usuario) {
         ContentValues cv = new ContentValues();
-        cv.put(CAMPO_EMAIL, usuario.getNombre());
+        cv.put(CAMPO_EMAIL, usuario.getEmail());
         String[] columnas = {"id", CAMPO_NOMBRE,CAMPO_EMAIL };
 
         SQLiteDatabase db = connexionDb.getReadableDatabase();

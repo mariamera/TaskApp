@@ -6,11 +6,16 @@ import java.util.List;
 
 public interface UsuarioRepositorio {
 
-    boolean guardar(Usuario usuario);
+    public boolean guardar(Usuario usuario);
 
-    boolean actualizar(Usuario usuario);
+    public boolean actualizar(Usuario usuario);
 
-    List<Usuario> buscar(String Name);
+    public Usuario buscar(int id);
 
-    Usuario buscar(int id);
+    public List<Usuario> buscarTecnicos();
+
+    public Usuario buscar(String username);
+
+    public boolean buscar(Usuario username);
+
 }

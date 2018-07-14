@@ -20,6 +20,7 @@ public class LogInActivity extends AppCompatActivity {
 
         Button btnRegistrar = findViewById(R.id.regisBtn);
         Button btnLogIn = findViewById(R.id.iniciarBtn);
+
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
