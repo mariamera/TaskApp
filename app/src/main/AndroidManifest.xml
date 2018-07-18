@@ -18,8 +18,9 @@
         </activity>
         <activity android:name=".vista.CategoriaActivity" />
         <activity android:name=".vista.CategoriaListaActivity" />
-        <!--<activity android:name=".vista.LogInActivity" />-->
-        <activity android:name=".vista.RegistrarActivity"></activity>
+        <!-- <activity android:name=".vista.LogInActivity" /> -->
+        <activity android:name=".vista.RegistrarActivity" />
+        <activity android:name=".vista.UsuarioActivity"></activity>
     </application>
 
 </manifest>

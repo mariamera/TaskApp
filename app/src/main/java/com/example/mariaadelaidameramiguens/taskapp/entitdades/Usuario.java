@@ -1,12 +1,13 @@
 package com.example.mariaadelaidameramiguens.taskapp.entitdades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by MESCyT on 7/7/2018.
  */
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     public enum TipoUsuario {
         TECNICO,
