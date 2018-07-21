@@ -12,7 +12,7 @@ import android.util.Log;
 public class ConnexionDb extends SQLiteOpenHelper {
     private static final String LOG_TAG = "connextionDb";
     private static final String NOMBRE_DB = "taskapp.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
 
     public ConnexionDb(Context context) {
@@ -24,13 +24,13 @@ public class ConnexionDb extends SQLiteOpenHelper {
         Log.i(LOG_TAG,"creando la base de datos");
         db.execSQL(EstructuraDb.TABLA_CATEGORIA);
         db.execSQL(EstructuraDb.TABLA_USUARIO);
+        db.execSQL(EstructuraDb.TABLA_TAREA);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > oldVersion) {
-            //db.execSQL("ALTER TABLE foo ADD COLUMN new_column INTEGER DEFAULT 0");
             onCreate(db);
         }
     }

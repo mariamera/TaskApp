@@ -20,7 +20,9 @@
         <activity android:name=".vista.CategoriaListaActivity" />
         <!-- <activity android:name=".vista.LogInActivity" /> -->
         <activity android:name=".vista.RegistrarActivity" />
-        <activity android:name=".vista.UsuarioActivity"></activity>
+        <activity android:name=".vista.UsuarioActivity" />
+        <activity android:name=".vista.UsuarioNormalActivity" />
+        <activity android:name=".vista.RegistrarTareaActivity"></activity>
     </application>
 
 </manifest>

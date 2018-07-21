@@ -98,7 +98,29 @@ public class Usuariorepositoriodbimpl implements UsuarioRepositorio {
 
     @Override
     public List<Usuario> buscarTecnicos() {
-        return null;
+        List<Usuario> usuarios = new ArrayList<>();
+        SQLiteDatabase db = connexionDb.getReadableDatabase();
+        String[] columnas = {CAMPO_ID, CAMPO_NOMBRE,CAMPO_EMAIL,CAMPO_CONTRASENA, CAMPO_TIPOUSUARIO };
+
+        //TODO: filter categorias por nombre (LIKE)
+        Cursor cr = db.query(TABLA_USUARIO, columnas, CAMPO_TIPOUSUARIO + "=?", new String[]{ Usuario.TipoUsuario.TECNICO.name() }, null , null, null, null);
+
+        cr.moveToFirst();
+
+        while (!cr.isAfterLast()) {
+        Usuario usuario = new Usuario();
+        usuario.setId(cr.getInt(cr.getColumnIndex(CAMPO_ID)));
+        usuario.setNombre(cr.getString(cr.getColumnIndex(CAMPO_NOMBRE)));
+        usuario.setEmail(cr.getString(cr.getColumnIndex(CAMPO_EMAIL)));
+        usuario.setContrasena(cr.getString(cr.getColumnIndex(CAMPO_CONTRASENA)));
+        usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(cr.getString(cr.getColumnIndex(CAMPO_TIPOUSUARIO))));
+            // agregamos la categoria a la lista.
+            usuarios.add( usuario);
+            cr.moveToNext();
+        }
+        cr.close();
+        db.close();
+        return usuarios;
     }
 
     @Override

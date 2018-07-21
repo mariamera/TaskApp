@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.mariaadelaidameramiguens.taskapp.MainActivity;
 import com.example.mariaadelaidameramiguens.taskapp.R;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.DataHolder;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.LogInRepositorio;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.LogInRepositorioImp;
@@ -38,13 +39,21 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Usuario usuario =  logInRepositorio.logIn(usuarioUsername.getText().toString(), usuarioContrasena.getText().toString() );
-                if(usuario.getId() != null ) {
-                    Intent intent1 = new Intent(LogInActivity.this, UsuarioActivity.class);
+                if(usuario.getId() != null) {
+                    Intent intent1 = null; 
+                    if( usuario.getTipoUsuario() == Usuario.TipoUsuario.TECNICO) {
+                         intent1 = new Intent(LogInActivity.this, UsuarioActivity.class);
+                    }
+                    if (usuario.getTipoUsuario() == Usuario.TipoUsuario.NORMAL) {
+                         intent1 = new Intent(LogInActivity.this, UsuarioNormalActivity.class);
+                    }
                     Log.i(LOG_TAG,usuario.toString());
-
+                    DataHolder.getInstance().setData(usuario);
+//                    app.setData(usuario);
                     intent1.putExtra("usuario", usuario); // pasar parametros para un activity.
                     startActivity(intent1);
-                } else {
+                }  else
+                    {
                     errorMsj.setText("Usuario No Encontrado" );
 
                 }

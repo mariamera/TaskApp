@@ -1,46 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".vista.UsuarioActivity">
+    tools:context="com.example.mariaadelaidameramiguens.taskapp.vista.UsuarioNormalActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/pendienteBtn"
+            android:id="@+id/btn_todas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Pendientes" />
+            android:text="Todas" />
 
         <Button
-            android:id="@+id/procesoBtn"
+            android:id="@+id/btn_proceso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Proceso" />
+            android:text="PROCESO" />
 
         <Button
-            android:id="@+id/busquedaBtn"
+            android:id="@+id/btn_crear_tarea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Busqueda" />
+            android:text="+ Crear Tarea" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
 
     <ListView
         android:id="@+id/categoria_listview"
@@ -48,5 +41,4 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
-
 </LinearLayout>

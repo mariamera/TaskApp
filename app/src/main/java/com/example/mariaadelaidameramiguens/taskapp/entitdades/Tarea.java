@@ -20,8 +20,17 @@ public class Tarea {
     private Date fecha;
     private Date fechaTerminada;
     TareaEstado estado;
-    Usuario usuarioCreador;
-    Usuario usuarioAsignado;
+    int usuarioCreador;
+    int usuarioAsignado;
+    int categoriaID;
+
+    public int getCategoriaID() {
+        return categoriaID;
+    }
+
+    public void setCategoriaID(int categoriaID) {
+        this.categoriaID = categoriaID;
+    }
 
     public Integer getId() {
         return id;
@@ -71,19 +80,34 @@ public class Tarea {
         this.estado = estado;
     }
 
-    public Usuario getUsuarioCreador() {
+    public int getUsuarioCreador() {
         return usuarioCreador;
     }
 
-    public void setUsuarioCreador(Usuario usuarioCreador) {
+    public void setUsuarioCreador(int usuarioCreador) {
         this.usuarioCreador = usuarioCreador;
     }
 
-    public Usuario getUsuarioAsignado() {
+    public int getUsuarioAsignado() {
         return usuarioAsignado;
     }
 
-    public void setUsuarioAsignado(Usuario usuarioAsignado) {
+    public void setUsuarioAsignado(int usuarioAsignado) {
         this.usuarioAsignado = usuarioAsignado;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Tarea{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", fecha=").append(fecha);
+        sb.append(", fechaTerminada=").append(fechaTerminada);
+        sb.append(", estado=").append(estado);
+        sb.append(", usuarioCreador=").append(usuarioCreador);
+        sb.append(", usuarioAsignado=").append(usuarioAsignado);
+        sb.append('}');
+        return sb.toString();
     }
 }

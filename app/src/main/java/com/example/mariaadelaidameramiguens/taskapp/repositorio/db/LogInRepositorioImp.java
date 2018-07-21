@@ -20,9 +20,6 @@ public class LogInRepositorioImp implements LogInRepositorio{
     private static final String TABLA_USUARIO = "usuario";
     private static final String LOG_TAG = "LogInRepositorio";
 
-    //    public Usuariorepositoriodbimpl(Context context) {
-    //        connexionDb = new ConnexionDb(context);
-    //    }
     public LogInRepositorioImp(Context context) {
         connexionDb = new ConnexionDb(context);
     }
