@@ -8,10 +8,12 @@ import android.util.Log;
 
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.UsuarioRepositorio;
+import com.example.mariaadelaidameramiguens.taskapp.vista.TareaListAdapter;
+import com.example.mariaadelaidameramiguens.taskapp.vista.TecnicoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.content.Context;
 public class Usuariorepositoriodbimpl implements UsuarioRepositorio {
 
     private ConnexionDb connexionDb;
@@ -26,6 +28,9 @@ public class Usuariorepositoriodbimpl implements UsuarioRepositorio {
     public Usuariorepositoriodbimpl(Context context) {
         connexionDb = new ConnexionDb(context);
     }
+
+//    public Usuariorepositoriodbimpl() {
+//    }
 
     @Override
     public boolean guardar(Usuario usuario) {

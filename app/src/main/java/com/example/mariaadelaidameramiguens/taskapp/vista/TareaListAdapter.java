@@ -1,6 +1,7 @@
 package com.example.mariaadelaidameramiguens.taskapp.vista;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mariaadelaidameramiguens.taskapp.R;
-import com.example.mariaadelaidameramiguens.taskapp.entitdades.Categoria;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Tarea;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.UsuarioRepositorio;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.Usuariorepositoriodbimpl;
 
 import java.util.List;
 
@@ -20,6 +23,8 @@ import java.util.List;
 public class TareaListAdapter extends BaseAdapter {
     private Context context;
     private List<Tarea> tareas;
+    private UsuarioRepositorio usuarioRepositorio;
+    private static final String LOG_TAG = "TareaListAdapter";
 
     public TareaListAdapter(Context context, List<Tarea> tareas) {
         this.context = context;
@@ -57,12 +62,16 @@ public class TareaListAdapter extends BaseAdapter {
 
         Tarea tar = tareas.get(i);
 
+        Log.i(LOG_TAG,tar.toString());
+
         tareaDescipcion.setText(tar.getDescription());
-        tareaFecha.setText((CharSequence) tar.getFecha());
-        usuarioCreador.setText(tar.getUsuarioCreador());
-        categoria.setText(tar.getCategoriaID());
-        proceso.setText(tar.getEstado().name());
+        tareaFecha.setText(tar.getFecha().toString());
+       usuarioCreador.setText(tar.getUsuarioCreador().getNombre() );
+        categoria.setText(Integer.toString(tar.getCategoriaID()));
+//        proceso.setText(tar.getEstado().name());
         return view;
     }
-    }
+
+
+}
 

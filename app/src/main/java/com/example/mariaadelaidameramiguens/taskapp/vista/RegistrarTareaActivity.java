@@ -57,14 +57,15 @@ public class RegistrarTareaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Categoria cat =(Categoria) drowp_down_categorias.getSelectedItem();
                 Usuario usr = (Usuario) drowp_down_tecnicos.getSelectedItem();
+                Usuario usuarioAsig = usuarioRepositorio.buscar(currentUser.getId());
                 Date date = new Date();
                 tarea = new Tarea();
                 Log.i(LOG_TAG,descripcion.getText().toString());
                 tarea.setDescription(descripcion.getText().toString());
                 tarea.setFecha(date);
-                tarea.setUsuarioCreador(currentUser.getId());
+                tarea.setUsuarioCreador(usuarioAsig);
                 tarea.setCategoriaID(cat.getId());
-                tarea.setUsuarioAsignado(usr.getId());
+                tarea.setUsuarioAsignado(usr);
                 tarea.setNombre(currentUser.getNombre());
                 Log.i(LOG_TAG,tarea.toString());
                 tareaRepositorio.guardar(tarea);

@@ -20,8 +20,8 @@ public class Tarea {
     private Date fecha;
     private Date fechaTerminada;
     TareaEstado estado;
-    int usuarioCreador;
-    int usuarioAsignado;
+    Usuario usuarioCreador;
+    Usuario usuarioAsignado;
     int categoriaID;
 
     public int getCategoriaID() {
@@ -80,19 +80,19 @@ public class Tarea {
         this.estado = estado;
     }
 
-    public int getUsuarioCreador() {
+    public Usuario getUsuarioCreador() {
         return usuarioCreador;
     }
 
-    public void setUsuarioCreador(int usuarioCreador) {
+    public void setUsuarioCreador(Usuario usuarioCreador) {
         this.usuarioCreador = usuarioCreador;
     }
 
-    public int getUsuarioAsignado() {
+    public Usuario getUsuarioAsignado() {
         return usuarioAsignado;
     }
 
-    public void setUsuarioAsignado(int usuarioAsignado) {
+    public void setUsuarioAsignado(Usuario usuarioAsignado) {
         this.usuarioAsignado = usuarioAsignado;
     }
 

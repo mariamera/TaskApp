@@ -1,4 +1,5 @@
 package com.example.mariaadelaidameramiguens.taskapp.vista;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.example.mariaadelaidameramiguens.taskapp.R;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Categoria;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.Usuariorepositoriodbimpl;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ import java.util.List;
 public class TecnicoAdapter extends BaseAdapter{
     private Context context;
     private List<Usuario> usuarios;
-
+    private Usuariorepositoriodbimpl usuarioRepositorio;
     public TecnicoAdapter(Context context, List<Usuario> usuarios) {
         this.context = context;
         this.usuarios = usuarios;
@@ -46,7 +48,7 @@ public class TecnicoAdapter extends BaseAdapter{
             LayoutInflater inflater = LayoutInflater.from(context);
             view = inflater.inflate(R.layout.tecnico_listview_row, null, true);
         }
-
+//        usuarioRepositorio = new Usuariorepositoriodbimpl(View.getContext());
         TextView lbltenicoNombre = view.findViewById(R.id.username_lbl);
 
         Usuario usuario = usuarios.get(i);
