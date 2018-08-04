@@ -17,7 +17,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/libre_baskerville"
             android:text="CATEGORIA"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -32,46 +35,61 @@
         android:id="@+id/categoriatxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lineSpacingExtra="10sp"
+        android:letterSpacing="1"
+        android:lineSpacingExtra="14sp"
         android:text="categoriatxt"
-        android:textAlignment="viewStart" />
+        android:textAlignment="viewStart"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/asignLbl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_baskerville"
         android:text="ASIGNADO A: "
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/asigntxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="asigntxt" />
+        android:lineSpacingExtra="14sp"
+        android:text="asigntxt"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/estadolbl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_baskerville"
         android:text="ESTADO:"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/estadotxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="estadotxt" />
+        android:lineSpacingExtra="14sp"
+        android:text="estadotxt"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/desdcripcionlbl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_baskerville"
         android:text="DESCRIPCION:"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/descripciontxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="descripciontxt" />
+        android:lineSpacingExtra="10sp"
+        android:text="descripciontxt"
+        android:textAlignment="center"
+        android:textSize="18sp" />
 </LinearLayout>

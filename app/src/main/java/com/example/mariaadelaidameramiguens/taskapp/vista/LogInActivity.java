@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mariaadelaidameramiguens.taskapp.MainActivity;
 import com.example.mariaadelaidameramiguens.taskapp.R;
@@ -40,22 +41,23 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Usuario usuario =  logInRepositorio.logIn(usuarioUsername.getText().toString(), usuarioContrasena.getText().toString() );
                 if(usuario.getId() != null) {
-                    Intent intent1 = null; 
+                    Intent intent1 = null;
+
                     if( usuario.getTipoUsuario() == Usuario.TipoUsuario.TECNICO) {
                          intent1 = new Intent(LogInActivity.this, UsuarioActivity.class);
                     }
+
                     if (usuario.getTipoUsuario() == Usuario.TipoUsuario.NORMAL) {
                          intent1 = new Intent(LogInActivity.this, UsuarioNormalActivity.class);
                     }
-                    Log.i(LOG_TAG,usuario.toString());
-                    DataHolder.getInstance().setData(usuario);
-//                    app.setData(usuario);
-                    intent1.putExtra("usuario", usuario); // pasar parametros para un activity.
-                    startActivity(intent1);
-                }  else
-                    {
-                    errorMsj.setText("Usuario No Encontrado" );
 
+                    DataHolder.getInstance().setData(usuario);
+                    intent1.putExtra("usuario", usuario); // pasar parametros para un activity.
+
+                    startActivity(intent1);
+
+                } else {
+                        Toast.makeText(LogInActivity.this, "Usuario No Encontrado", Toast.LENGTH_LONG).show();
                 }
 
             }

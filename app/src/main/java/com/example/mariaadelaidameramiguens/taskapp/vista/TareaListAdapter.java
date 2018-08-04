@@ -70,6 +70,12 @@ public class TareaListAdapter extends BaseAdapter {
             by.setText("Asignado A:");
             usuarioCreador.setText(tar.getUsuarioAsignado().getNombre() );
         }
+
+        if (currentUser.getTipoUsuario() == Usuario.TipoUsuario.TECNICO ){
+            by.setText("By:");
+            usuarioCreador.setText(tar.getUsuarioCreador().getNombre() );
+        }
+
         tareaDescipcion.setText(tar.getDescription());
         tareaFecha.setText(tar.getFecha().toString());
         categoria.setText(Integer.toString(tar.getCategoriaID()));

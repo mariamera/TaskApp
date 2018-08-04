@@ -21,5 +21,7 @@ public interface TareaRepositorio {
 
     public List<Tarea> buscarTareas(Usuario usuario);
 
+    public List<Tarea> buscarTareasPorTecnicos(Usuario usuario);
+
     public boolean buscar(Tarea id);
 }

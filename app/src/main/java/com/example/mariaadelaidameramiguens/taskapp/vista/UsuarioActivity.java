@@ -11,8 +11,12 @@ import android.widget.TextView;
 
 import com.example.mariaadelaidameramiguens.taskapp.R;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Categoria;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.DataHolder;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.Tarea;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.CategoriaRepositorio;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.TareaRepositorio;
+import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.TareaRepositorioImp;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.dbCategoriaRepositorioImp;
 
 import java.util.List;
@@ -20,37 +24,38 @@ import java.util.List;
 public class UsuarioActivity extends AppCompatActivity {
     private Usuario usuario;
     private static final String LOG_TAG = UsuarioActivity.class.getName();
-    private CategoriaRepositorio categoriaRepositorio;
+    private TareaRepositorio tareaRepositorio;
+    final Usuario currentUser = DataHolder.getInstance().getData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
+        tareaRepositorio = new TareaRepositorioImp(this);
         Bundle paraBundle = getIntent().getExtras(); // parametros del intento
-        TextView txtNombre = (TextView) findViewById(R.id.txtNombre);
-        ListView catListview = (ListView) findViewById(R.id.categoria_listview);
 
         if( paraBundle != null && paraBundle.containsKey("usuario")) {
             usuario = (Usuario) paraBundle.getSerializable("usuario");
-            Log.i(LOG_TAG,usuario.toString());
-            categoriaRepositorio = new dbCategoriaRepositorioImp(this);
-            List<Categoria> categorias = categoriaRepositorio.buscar(null);
+            DataHolder.getInstance().setData(usuario);
+            List<Tarea> tareas = tareaRepositorio.buscarTareasPorTecnicos(currentUser);
 
-            txtNombre.setText("BIENVENIDO/A " + usuario.getNombre().toUpperCase());
-            catListview.setAdapter(new CategoriaListAdapter(this, categorias));
+            if(tareas!= null) {
+                ListView catListview = (ListView) findViewById(R.id.categoria_listview);
+                catListview.setAdapter(new TareaListAdapter(this, tareas));
 
-            catListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                catListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-                    Categoria cat = (Categoria) adapterView.getItemAtPosition(i);
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
+                        Tarea t = (Tarea) adapterView.getItemAtPosition(i);
 
-                    Intent regCatIntent = new Intent(UsuarioActivity.this, CategoriaActivity.class);
-                    regCatIntent.putExtra("categoria", cat); // pasar parametros para un activity.
-                    startActivity(regCatIntent);
-                }
+                        Intent regTareaIntent = new Intent(UsuarioActivity.this, TareaActivity.class);
+                        regTareaIntent.putExtra("tarea", t );
+                        startActivity(regTareaIntent);
+                    }
 
-            });
+                });
+            }
         }
     }
 }

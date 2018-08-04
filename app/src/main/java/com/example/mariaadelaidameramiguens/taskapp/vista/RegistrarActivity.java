@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.mariaadelaidameramiguens.taskapp.MainActivity;
 import com.example.mariaadelaidameramiguens.taskapp.R;
@@ -59,10 +60,11 @@ public class RegistrarActivity extends AppCompatActivity {
                  usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(radioTipoUsuario.getText().toString()));
 
                 if (usuarioRepositorio.buscar(usuario)){
-                    errorMsj.setText("Email Existe" );
+                    Toast.makeText(RegistrarActivity.this, "Email Existe", Toast.LENGTH_LONG).show();
                 } else
                 if(validarUsuario(usuario)){
-                    errorMsj.setText("LLenar todos los campos");
+                    Toast.makeText(RegistrarActivity.this, "LLenar todos los campos", Toast.LENGTH_LONG).show();
+
                 }
                 else {
                     Log.i(LOG_TAG,usuario.toString());
@@ -71,8 +73,8 @@ public class RegistrarActivity extends AppCompatActivity {
                 }
 
              } else {
-                 Log.i(LOG_TAG,usuario.toString());
-                 errorMsj.setText("Contrasena no machean");
+                 Toast.makeText(RegistrarActivity.this, "Contrasena no machean", Toast.LENGTH_LONG).show();
+
              }
 
             }

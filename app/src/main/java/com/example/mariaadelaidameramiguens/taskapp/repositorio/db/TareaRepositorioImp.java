@@ -163,6 +163,46 @@ public class TareaRepositorioImp implements TareaRepositorio{
     }
 
     @Override
+    public List<Tarea> buscarTareasPorTecnicos(Usuario usuario) {
+        List<Tarea> listaTareas = new ArrayList<>();
+        SQLiteDatabase db = connexionDb.getReadableDatabase();
+        String[] columnas = {CAMPO_ID, CAMPO_DESCRIPCION, CAMPO_NOMBRE,CAMPO_FECHA , CAMPO_FECHA_COMPLETADO , CAMPO_ESTADO ,CAMPO_USUARIO_CREADOR_ID, CAMPO_USUARIO_ASIGNADO_ID,CAMPO_CATEGORIA_ID  };
+        //TODO: filter categorias por nombre (LIKE)
+        Cursor cr = db.query(TABLA_TAREA, columnas, CAMPO_USUARIO_ASIGNADO_ID  + "== ?",  new String[]{  Integer.toString(usuario.getId()) }, null , null, null, null);
+        cr.moveToFirst();
+
+        Tarea tarea = new Tarea();
+        Log.i(LOG_TAG,cr.toString());
+
+        while (!cr.isAfterLast()) {
+            tarea = new Tarea();
+
+            Usuario asignado = usuario;
+            Usuario creador = usuarioRepositorio.buscar(cr.getInt(cr.getColumnIndex(CAMPO_USUARIO_CREADOR_ID)));
+
+            try {
+                String valueState = cr.getString(cr.getColumnIndex(CAMPO_ESTADO));
+                DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss zzz yyyy");
+                tarea.setId(cr.getInt(cr.getColumnIndex(CAMPO_ID)));
+                tarea.setNombre(cr.getString(cr.getColumnIndex(CAMPO_NOMBRE)));
+                tarea.setDescription(cr.getString(cr.getColumnIndex(CAMPO_DESCRIPCION)));
+                tarea.setUsuarioCreador(creador);
+                tarea.setUsuarioAsignado(asignado);
+                tarea.setDescription(cr.getString(cr.getColumnIndex(CAMPO_DESCRIPCION)));
+                tarea.setFecha( df.parse(cr.getString(cr.getColumnIndex(CAMPO_FECHA))));
+                tarea.setEstado(Tarea.TareaEstado.valueOf(valueState));
+            } catch (ParseException pe) {
+                pe.printStackTrace();
+            }
+            // agregamos la categoria a la lista.
+            listaTareas.add( tarea);
+            cr.moveToNext();
+        }
+        cr.close();
+        return listaTareas;
+    }
+
+    @Override
     public boolean buscar(Tarea id) {
         return false;
     }
