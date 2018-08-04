@@ -16,6 +16,7 @@ import com.example.mariaadelaidameramiguens.taskapp.entitdades.DataHolder;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.LogInRepositorio;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.LogInRepositorioImp;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 
@@ -27,6 +28,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
 
         Button btnRegistrar = findViewById(R.id.regisBtn);
         Button btnLogIn = findViewById(R.id.iniciarBtn);

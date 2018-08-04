@@ -32,7 +32,6 @@ public class UsuarioNormalActivity extends AppCompatActivity {
         tareaRepositorio = new TareaRepositorioImp(this);
         List<Tarea> tareas = tareaRepositorio.buscarTareas(currentUser);
 
-
         if(tareas!= null) {
             ListView catListview = (ListView) findViewById(R.id.categoria_listview);
             catListview.setAdapter(new TareaListAdapter(this, tareas));

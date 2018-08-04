@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,7 +34,9 @@ public class UsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usuario);
         tareaRepositorio = new TareaRepositorioImp(this);
         Bundle paraBundle = getIntent().getExtras(); // parametros del intento
+        Button listoBtn = findViewById(R.id.tecnicoBotton);
 
+//        listoBtn.setVisibility(View.VISIBLE);
         if( paraBundle != null && paraBundle.containsKey("usuario")) {
             usuario = (Usuario) paraBundle.getSerializable("usuario");
             DataHolder.getInstance().setData(usuario);

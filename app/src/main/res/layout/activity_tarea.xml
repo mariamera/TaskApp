@@ -92,4 +92,11 @@
         android:text="descripciontxt"
         android:textAlignment="center"
         android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/tecnicoBotton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Listo"
+        android:visibility="invisible" />
 </LinearLayout>
