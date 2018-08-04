@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mariaadelaidameramiguens.taskapp.vista.TareaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/categoriaLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CATEGORIA"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/datelbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="date" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/categoriatxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="10sp"
+        android:text="categoriatxt"
+        android:textAlignment="viewStart" />
+
+    <TextView
+        android:id="@+id/asignLbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ASIGNADO A: "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/asigntxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="asigntxt" />
+
+    <TextView
+        android:id="@+id/estadolbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ESTADO:"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/estadotxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="estadotxt" />
+
+    <TextView
+        android:id="@+id/desdcripcionlbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DESCRIPCION:"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descripciontxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="descripciontxt" />
+</LinearLayout>

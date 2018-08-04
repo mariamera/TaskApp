@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class UsuarioNormalActivity extends AppCompatActivity {
     private static final String LOG_TAG = "UsuarioNormal";
+    final Usuario currentUser = DataHolder.getInstance().getData();
 
     private TareaRepositorio tareaRepositorio;
     @Override
@@ -28,11 +30,25 @@ public class UsuarioNormalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usuario_normal);
         Button registarTarea = findViewById(R.id.btn_crear_tarea);
         tareaRepositorio = new TareaRepositorioImp(this);
-        List<Tarea> tareas = tareaRepositorio.buscarTareas();
+        List<Tarea> tareas = tareaRepositorio.buscarTareas(currentUser);
+
+
         if(tareas!= null) {
             ListView catListview = (ListView) findViewById(R.id.categoria_listview);
             catListview.setAdapter(new TareaListAdapter(this, tareas));
 
+            catListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
+                    Tarea t = (Tarea) adapterView.getItemAtPosition(i);
+
+                    Intent regTareaIntent = new Intent(UsuarioNormalActivity.this, TareaActivity.class);
+                    regTareaIntent.putExtra("tarea", t );
+                    startActivity(regTareaIntent);
+                }
+
+            });
         }
         final Usuario currentUser = DataHolder.getInstance().getData();
 
@@ -46,5 +62,7 @@ public class UsuarioNormalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

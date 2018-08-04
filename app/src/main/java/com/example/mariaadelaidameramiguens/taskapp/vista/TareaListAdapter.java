@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mariaadelaidameramiguens.taskapp.R;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.DataHolder;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Tarea;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.UsuarioRepositorio;
@@ -24,6 +25,7 @@ public class TareaListAdapter extends BaseAdapter {
     private Context context;
     private List<Tarea> tareas;
     private UsuarioRepositorio usuarioRepositorio;
+    final Usuario currentUser = DataHolder.getInstance().getData();
     private static final String LOG_TAG = "TareaListAdapter";
 
     public TareaListAdapter(Context context, List<Tarea> tareas) {
@@ -59,16 +61,25 @@ public class TareaListAdapter extends BaseAdapter {
         TextView usuarioCreador= view.findViewById(R.id.tarea_usuario_creador);
         TextView categoria= view.findViewById(R.id.tarea_categoria);
         TextView proceso= view.findViewById(R.id.tarea_proceso);
-
+        TextView by = view.findViewById(R.id.tarea_by);
         Tarea tar = tareas.get(i);
 
         Log.i(LOG_TAG,tar.toString());
 
+        if (currentUser.getTipoUsuario() == Usuario.TipoUsuario.NORMAL ){
+            by.setText("Asignado A:");
+            usuarioCreador.setText(tar.getUsuarioAsignado().getNombre() );
+        }
         tareaDescipcion.setText(tar.getDescription());
         tareaFecha.setText(tar.getFecha().toString());
-       usuarioCreador.setText(tar.getUsuarioCreador().getNombre() );
         categoria.setText(Integer.toString(tar.getCategoriaID()));
-//        proceso.setText(tar.getEstado().name());
+
+        if(tar.getEstado() != null) {
+            Log.i(LOG_TAG,"STATE NOT NULL");
+
+            proceso.setText(tar.getEstado().name());
+        }
+
         return view;
     }
 

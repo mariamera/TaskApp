@@ -67,6 +67,7 @@ public class RegistrarTareaActivity extends AppCompatActivity {
                 tarea.setCategoriaID(cat.getId());
                 tarea.setUsuarioAsignado(usr);
                 tarea.setNombre(currentUser.getNombre());
+                tarea.setEstado(Tarea.TareaEstado.PENDIENTE);
                 Log.i(LOG_TAG,tarea.toString());
                 tareaRepositorio.guardar(tarea);
 

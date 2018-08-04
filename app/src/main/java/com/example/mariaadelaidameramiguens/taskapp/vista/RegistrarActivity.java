@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import com.example.mariaadelaidameramiguens.taskapp.MainActivity;
 import com.example.mariaadelaidameramiguens.taskapp.R;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Categoria;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.DataHolder;
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.UsuarioRepositorio;
 import com.example.mariaadelaidameramiguens.taskapp.repositorio.db.Usuariorepositoriodbimpl;
@@ -93,7 +94,16 @@ public class RegistrarActivity extends AppCompatActivity {
     }
 
     void goToMainActivity() {
-        Intent intent = new Intent(RegistrarActivity.this, LogInActivity.class);
-        startActivity(intent);
+        Intent intent1 = null;
+
+        if( usuario.getTipoUsuario() == Usuario.TipoUsuario.TECNICO) {
+            intent1 = new Intent(RegistrarActivity.this, UsuarioActivity.class);
+        }
+        if (usuario.getTipoUsuario() == Usuario.TipoUsuario.NORMAL) {
+            intent1 = new Intent(RegistrarActivity.this, UsuarioNormalActivity.class);
+        }
+        DataHolder.getInstance().setData(usuario);
+        intent1.putExtra("usuario", usuario); // pasar parametros para un activity.
+        startActivity(intent1);
     }
 }

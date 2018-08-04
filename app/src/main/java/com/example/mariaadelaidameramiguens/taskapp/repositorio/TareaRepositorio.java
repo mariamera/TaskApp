@@ -1,6 +1,7 @@
 package com.example.mariaadelaidameramiguens.taskapp.repositorio;
 
 import com.example.mariaadelaidameramiguens.taskapp.entitdades.Tarea;
+import com.example.mariaadelaidameramiguens.taskapp.entitdades.Usuario;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface TareaRepositorio {
     public Tarea buscar(int id);
 
     public List<Tarea> buscarTareas();
+
+    public List<Tarea> buscarTareas(Usuario usuario);
 
     public boolean buscar(Tarea id);
 }

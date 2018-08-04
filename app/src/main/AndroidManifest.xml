@@ -22,7 +22,8 @@
         <activity android:name=".vista.RegistrarActivity" />
         <activity android:name=".vista.UsuarioActivity" />
         <activity android:name=".vista.UsuarioNormalActivity" />
-        <activity android:name=".vista.RegistrarTareaActivity"></activity>
+        <activity android:name=".vista.RegistrarTareaActivity" />
+        <activity android:name=".vista.TareaActivity"></activity>
     </application>
 
 </manifest>
